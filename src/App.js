@@ -37,9 +37,15 @@ function Header({ onToggleTheme, theme }) {
     <header className="header">
       <div className="container">
         <div className="header-content">
-          <div className="logo">
+          <div
+            className="logo"
+            onClick={() => {
+              window.scrollTo(0, 0);
+              window.location.reload();
+            }}
+            style={{ cursor: "pointer" }}
+          >
             CREDExA
-            {/* <span className="version">v1.2.0</span> */}
           </div>
           <div className="nav-tags">
             <button onClick={() => scrollToId("analyze")} className="nav-pill">
