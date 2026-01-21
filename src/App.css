@@ -153,7 +153,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: var(--font-bold);
   background: var(--gradient-primary);
   -webkit-background-clip: text;

@@ -378,20 +378,21 @@ function ResultsSection({ resultsRef, results }) {
                 <div className="factors-list">
                   <div className="factor">
                     <span className="factor-label">Role</span>
+
                     <span
                       className="factor-score"
                       style={{ color: "var(--green-500)" }}
                     >
-                      92%
+                      {results?.role || "—"}
                     </span>
                   </div>
                   <div className="factor">
-                    <span className="factor-label">Experience</span>
+                    <span className="factor-label">Skill Fit</span>
                     <span
                       className="factor-score"
                       style={{ color: "var(--blue-600)" }}
                     >
-                      85%
+                      {results?.skill_fit_percent || "—"}%
                     </span>
                   </div>
                   {/* <div className="factor">
