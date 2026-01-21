@@ -150,6 +150,9 @@
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: var(--text-3xl);
   font-weight: var(--font-bold);
   background: var(--gradient-primary);
@@ -159,6 +162,8 @@
   letter-spacing: -0.02em;
   position: relative;
 }
+
+
 
 .logo::after {
   content: '';
