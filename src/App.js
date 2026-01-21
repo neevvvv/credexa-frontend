@@ -28,18 +28,41 @@ function useCountUp(end, duration = 1500, shouldStart = true) {
 }
 
 // Header Component
-function Header() {
+function Header({ onToggleTheme, theme }) {
+  const scrollToId = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <header className="header">
       <div className="container">
         <div className="header-content">
           <div className="logo">
             CREDExA
-            <span className="version">v1.2.0</span>
+            {/* <span className="version">v1.2.0</span> */}
           </div>
-          <div className="trust-badge">
-            <span>🔒</span>
-            <span>Built for transparency</span>
+          <div className="nav-tags">
+            <button onClick={() => scrollToId("analyze")} className="nav-pill">
+              Analyze
+            </button>
+            <button onClick={() => scrollToId("features")} className="nav-pill">
+              Features
+            </button>
+            <button onClick={() => scrollToId("team")} className="nav-pill">
+              Team
+            </button>
+            <button onClick={() => scrollToId("faq")} className="nav-pill">
+              FAQ
+            </button>
+            {/* <div className="nav-tags">
+              <button
+                className="nav-pill"
+                onClick={onToggleTheme}
+                title="Toggle Dark Mode"
+              >
+                {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+              </button>
+            </div> */}
           </div>
         </div>
       </div>
@@ -50,7 +73,7 @@ function Header() {
 // Hero Component
 function Hero({ onAnalyzeClick }) {
   const statsCount1 = useCountUp(1247, 2000, true);
-  const statsCount2 = useCountUp(12, 2000, true);
+  const statsCount2 = useCountUp(50, 2000, true);
 
   return (
     <section className="hero">
@@ -58,7 +81,7 @@ function Hero({ onAnalyzeClick }) {
         <div className="hero-content">
           <div className="hero-eyebrow">Resume Analysis System</div>
           <h1 className="hero-headline">
-            Understand why candidates match—or don't
+            Understand why candidates match-or don't
           </h1>
           <p className="hero-subhead">
             Explainable scoring for better hiring decisions
@@ -67,7 +90,7 @@ function Hero({ onAnalyzeClick }) {
             <button className="btn btn-primary" onClick={onAnalyzeClick}>
               Analyze Resume →
             </button>
-            <button className="btn btn-secondary">View Sample Report</button>
+            {/* <button className="btn btn-secondary">View Sample Report</button> */}
           </div>
           <div className="hero-stats">
             <div className="stat">
@@ -77,8 +100,8 @@ function Hero({ onAnalyzeClick }) {
               <span className="stat-label">Analyses completed</span>
             </div>
             <div className="stat">
-              <span className="stat-number">{statsCount2} min</span>
-              <span className="stat-label">Avg. time saved</span>
+              <span className="stat-number">{statsCount2}+</span>
+              <span className="stat-label">Active Users</span>
             </div>
           </div>
         </div>
@@ -113,7 +136,7 @@ function AnalyzeSection({ onAnalyze, analyzeRef }) {
   };
 
   return (
-    <section className="analyze section" ref={analyzeRef}>
+    <section className="analyze section" ref={analyzeRef} id="analyze">
       <div className="container">
         <div className="text-center">
           <h2 className="section-title">Analyze Resume</h2>
@@ -223,7 +246,7 @@ function LoadingState() {
 // Results Component
 function ResultsSection({ resultsRef, results }) {
   const [viewMode, setViewMode] = useState("detailed");
-  const [showResults, setShowResults] = useState(true);
+  const [showResults] = useState(true);
 
   const scoreValue = results?.overall_score ?? 0;
   const scoreCount = useCountUp(scoreValue, 1500, showResults);
@@ -242,7 +265,6 @@ function ResultsSection({ resultsRef, results }) {
     return { text: "Weak Fit", class: "badge-weak" };
   };
 
-  // 🔹 BUILD EXPLAINABILITY FROM BACKEND
   const explainabilityItems = [];
 
   if (results?.review) {
@@ -269,6 +291,7 @@ function ResultsSection({ resultsRef, results }) {
         text: results.review.overall_review,
       });
     }
+
     if (results.review.role_fit_summary) {
       explainabilityItems.push({
         type: "neutral",
@@ -278,7 +301,6 @@ function ResultsSection({ resultsRef, results }) {
     }
   }
 
-  // 🔹 BUILD IMPROVEMENTS FROM BACKEND
   const improvementSuggestions = [];
 
   results?.review?.areas_to_improve?.forEach((area, index) => {
@@ -289,8 +311,8 @@ function ResultsSection({ resultsRef, results }) {
         index === 0
           ? "High impact"
           : index === 1
-          ? "Moderate impact"
-          : "Incremental improvement",
+            ? "Moderate impact"
+            : "Incremental improvement",
     });
   });
 
@@ -307,12 +329,12 @@ function ResultsSection({ resultsRef, results }) {
         </div>
 
         <div className="view-toggle">
-          <button
+          {/* <button
             className={`toggle-btn ${viewMode === "simple" ? "active" : ""}`}
             onClick={() => setViewMode("simple")}
           >
             Simple View
-          </button>
+          </button> */}
           <button
             className={`toggle-btn ${viewMode === "detailed" ? "active" : ""}`}
             onClick={() => setViewMode("detailed")}
@@ -323,62 +345,76 @@ function ResultsSection({ resultsRef, results }) {
 
         {viewMode === "detailed" && (
           <>
-          <div className="results-grid">
-  <div className="card card-elevated">
-    <div className="score-display">
-      <div
-        className="score-number"
-        style={{ color: getScoreColor(scoreValue) }}
-      >
-        {scoreCount}%
-      </div>
-      <div className="score-label">Match Score</div>
-      <div className="score-bar">
-        <div
-          className="score-bar-fill"
-          style={{
-            "--score-percentage": `${scoreValue}%`,
-            background: getScoreColor(scoreValue),
-          }}
-        ></div>
-      </div>
-      <span className={`score-badge ${badge.class}`}>{badge.text}</span>
-    </div>
-  </div>
+            <div className="results-grid">
+              <div className="card card-elevated">
+                <div className="score-display">
+                  <div
+                    className="score-number"
+                    style={{ color: getScoreColor(scoreValue) }}
+                  >
+                    {scoreCount}%
+                  </div>
+                  <div className="score-label">Match Score</div>
+                  <div className="score-bar">
+                    <div
+                      className="score-bar-fill"
+                      style={{
+                        "--score-percentage": `${scoreValue}%`,
+                        background: getScoreColor(scoreValue),
+                      }}
+                    ></div>
+                  </div>
+                  <span className={`score-badge ${badge.class}`}>
+                    {badge.text}
+                  </span>
+                </div>
+              </div>
 
-  <div className="card card-elevated">
-    <div className="card-header">
-      <h3 className="card-title">Key Factors</h3>
-      <p className="card-subtitle">Primary scoring components</p>
-    </div>
-    <div className="factors-list">
-      <div className="factor">
-        <span className="factor-label">Skills Match</span>
-        <span className="factor-score" style={{ color: "var(--green-500)" }}>
-          92%
-        </span>
-      </div>
-      <div className="factor">
-        <span className="factor-label">Experience</span>
-        <span className="factor-score" style={{ color: "var(--blue-600)" }}>
-          85%
-        </span>
-      </div>
-      <div className="factor">
-        <span className="factor-label">Education</span>
-        <span className="factor-score" style={{ color: "var(--blue-600)" }}>
-          81%
-        </span>
-      </div>
-      <div className="factor">
-        <span className="factor-label">Certifications</span>
-        <span className="factor-score" style={{ color: "var(--amber-500)" }}>
-          78%
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
+              <div className="card card-elevated">
+                <div className="card-header">
+                  <h3 className="card-title">Key Factors</h3>
+                  <p className="card-subtitle">Primary scoring components</p>
+                </div>
+                <div className="factors-list">
+                  <div className="factor">
+                    <span className="factor-label">Role</span>
+                    <span
+                      className="factor-score"
+                      style={{ color: "var(--green-500)" }}
+                    >
+                      92%
+                    </span>
+                  </div>
+                  <div className="factor">
+                    <span className="factor-label">Experience</span>
+                    <span
+                      className="factor-score"
+                      style={{ color: "var(--blue-600)" }}
+                    >
+                      85%
+                    </span>
+                  </div>
+                  {/* <div className="factor">
+                    <span className="factor-label">Education</span>
+                    <span
+                      className="factor-score"
+                      style={{ color: "var(--blue-600)" }}
+                    >
+                      81%
+                    </span>
+                  </div> */}
+                  {/* <div className="factor">
+                    <span className="factor-label">Certifications</span>
+                    <span
+                      className="factor-score"
+                      style={{ color: "var(--amber-500)" }}
+                    >
+                      78%
+                    </span>
+                  </div> */}
+                </div>
+              </div>
+            </div>
 
             <div className="card">
               <div className="card-header">
@@ -477,7 +513,7 @@ function FeaturesSection() {
   ];
 
   return (
-    <section className="features section">
+    <section className="features section" id="features">
       <div className="container">
         <div className="text-center">
           <h2 className="section-title">Why CREDExA?</h2>
@@ -503,13 +539,16 @@ function FeaturesSection() {
 // Team Component
 function TeamSection() {
   const team = [
-  { name: "Neev Sahu", role: "Backend Developer", initial: "NS" },
-  { name: "Nishi Singhal", role: "UI/UX Designer, Frontend Developer", initial: "NS" },
-];
-
+    { name: "Neev Sahu", role: "Backend Developer", initial: "NS" },
+    {
+      name: "Nishi Singhal",
+      role: "UI/UX Designer, Frontend Developer",
+      initial: "NS",
+    },
+  ];
 
   return (
-    <section className="team section">
+    <section className="team section" id="team">
       <div className="container">
         <div className="text-center">
           <h2 className="section-title">Our Team</h2>
@@ -560,7 +599,7 @@ function FAQSection() {
   ];
 
   return (
-    <section className="faq section">
+    <section className="faq section" id="faq">
       <div className="container">
         <div className="text-center">
           <h2 className="section-title">Frequently Asked Questions</h2>
@@ -577,9 +616,7 @@ function FAQSection() {
             >
               <button
                 className="faq-question"
-                onClick={() =>
-                  setOpenIndex(openIndex === index ? null : index)
-                }
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <span>{faq.question}</span>
                 <span className="faq-icon">▼</span>
@@ -623,7 +660,15 @@ function Footer() {
 
 // Main App Component
 function App() {
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("credexa-theme");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+    }
+  }, []);
+
   const [isLoading, setIsLoading] = useState(false);
+  const [theme, setTheme] = useState("light");
   const [showResults, setShowResults] = useState(false);
   const [results, setResults] = useState(null);
   const analyzeRef = useRef(null);
@@ -632,6 +677,15 @@ function App() {
   const scrollToAnalyze = () => {
     analyzeRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const toggleTheme = () => {
+    const isDark = document.body.classList.toggle("dark");
+    localStorage.setItem("credexa-theme", isDark ? "dark" : "light");
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const handleAnalyze = async (resumeFile, jobDescription) => {
     setIsLoading(true);
@@ -655,7 +709,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header onToggleTheme={toggleTheme} theme={theme} />
       <Hero onAnalyzeClick={scrollToAnalyze} />
       <AnalyzeSection onAnalyze={handleAnalyze} analyzeRef={analyzeRef} />
 
