@@ -1,0 +1,178 @@
+# 🚀 CREDExA — Explainable Resume Analysis System
+
+CREDExA is an **AI-powered, explainable resume analysis platform** that evaluates resumes against job descriptions and provides **transparent scoring, skill matching, and actionable feedback**.
+
+Unlike traditional ATS systems, CREDExA explains **why** a candidate matches (or doesn’t), combining **rule-based logic, ML scoring, semantic similarity, and GenAI-powered narrative reviews**.
+
+---
+
+## ✨ Key Features
+
+- 📄 **Resume Upload (PDF)**
+- 🧠 **Role Detection from Job Description**
+- 🎯 **Skill Matching & Missing Skill Detection**
+- 📊 **Explainable Match Score (0–100)**
+- 🧩 **Semantic Similarity Scoring**
+- 🤖 **GenAI Narrative Resume Review**
+- 🔍 **Transparent “Why This Score?” Explanations**
+- 📈 **Actionable Improvement Suggestions**
+- 🌗 **Dark Mode Support**
+- 📱 **Fully Responsive (Desktop & Mobile)**
+
+---
+
+## 🧠 How Scoring Works (High Level)
+
+Final score is computed using a weighted blend of:
+
+- **Skill Fit Score**
+  - Core + secondary skills
+  - Evidence-based weighting
+- **Semantic Similarity**
+  - Resume ↔ Job Description meaning match
+- **Resume Quality Signals**
+- **Penalty for Critical Missing Skills**
+
+All scores are normalized and mapped to clear score bands:
+- Excellent Match
+- Strong Match
+- Moderate Match
+- Weak Match
+
+Every score is **explainable**.
+
+---
+
+## 🏗️ Tech Stack
+
+### Frontend
+- **React**
+- Custom CSS (Glassmorphism + Gradients)
+- Fetch API
+- Fully responsive UI
+- Deployed on **Vercel**
+
+### Backend
+- **Node.js + Express**
+- Multer (file upload)
+- Resume PDF parsing
+- Modular scoring pipeline
+- Deployed on **Render**
+
+### AI / ML
+- Semantic similarity scoring
+- Skill concept matching
+- Evidence-weighted skill scoring
+- **GenAI (LLM) narrative resume review**
+- Robust fallback logic (no user-visible failures)
+
+---
+
+## 📂 Project Structure
+
+CREDExA/
+├── frontend/
+│ ├── src/
+│ │ ├── App.js
+│ │ ├── api.js
+│ │ ├── App.css
+│ │ └── index.js
+│ └── public/
+│   └── index.html
+│
+├── backend/
+│ ├── controllers/
+│ │ └── analyzeController.js
+│ ├── services/
+│ │ ├── resumeParser.js
+│ │ ├── feedbackGenerator.js
+│ │ ├── skillScore.js
+│ │ ├── genaiNarrativeService.js
+│ │ ├── sectionExtractor.js
+│ │ ├── scoreCalculator.js
+│ │ ├── skillConceptService.js
+│ │ └── semanticService.js
+│ ├── utils/
+│ │ ├── roleDetector.js
+│ │ ├── constants.js
+│ │ ├── dependencySkillInferer.js
+│ │ ├── jdExpectationAnalyzer.js
+│ │ ├── jdRoleResolver.js
+│ │ ├── mergeEvidenceWithML.js
+│ │ ├── resumeQuality.js
+│ │ ├── roleDetector.js
+│ │ ├── roleExpectations.js
+│ │ ├── roleSkills.js
+│ │ ├── scoreBandResolver.js
+│ │ ├── scoreExplanationGenerator.js
+│ │ ├── scoreNormalizer.js
+│ │ ├── sectionWeightResolver.js
+│ │ ├── skillDependencyMap.js
+│ │ ├── skillEvidenceAnalyzer.js
+│ │ ├── skillEvidenceWeights.js
+│ │ ├── skillExtractor.js
+│ │ └── weightBlender.js
+│ └── index.js
+│
+└── README.md
+
+---
+
+## ⚙️ Environment Variables (Backend)
+
+Create a `.env` file in `backend/`:
+
+```env
+PORT=5000
+GENAI_API_URL=your_genai_endpoint
+GENAI_API_KEY=your_api_key
+
+🚀 Running Locally
+Backend
+cd backend
+npm install
+npm start
+
+Frontend
+cd frontend
+npm install
+npm start
+
+
+Frontend runs on http://localhost:3000
+Backend runs on http://localhost:5000
+
+🌍 Deployment
+
+Frontend: Vercel
+
+Backend: Render
+
+Ensure environment variables are set correctly in Render dashboard.
+
+🔐 Privacy & Security
+
+Resumes are processed temporarily
+
+Uploaded files are deleted after analysis
+
+No resume data is stored permanently
+
+👥 Team
+
+Neev Sahu — Backend Developer
+
+Nishi Singhal — UI/UX Designer & Frontend Developer
+
+📌 Vision
+
+CREDExA aims to make hiring:
+
+Fairer
+
+More transparent
+
+Explainable by design
+
+No black boxes.
+Only clarity.
