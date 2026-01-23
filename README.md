@@ -68,52 +68,35 @@ Every score is **explainable**.
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
 
+```bash
 CREDExA/
 ├── frontend/
-│ ├── src/
-│ │ ├── App.js
-│ │ ├── api.js
-│ │ ├── App.css
-│ │ └── index.js
-│ └── public/
-│   └── index.html
-│
+│   ├── public/
+│   │   └── index.html
+│   └── src/
+│       ├── App.js
+│       ├── api.js
+│       ├── App.css
+│       └── index.js
 ├── backend/
-│ ├── controllers/
-│ │ └── analyzeController.js
-│ ├── services/
-│ │ ├── resumeParser.js
-│ │ ├── feedbackGenerator.js
-│ │ ├── skillScore.js
-│ │ ├── genaiNarrativeService.js
-│ │ ├── sectionExtractor.js
-│ │ ├── scoreCalculator.js
-│ │ ├── skillConceptService.js
-│ │ └── semanticService.js
-│ ├── utils/
-│ │ ├── roleDetector.js
-│ │ ├── constants.js
-│ │ ├── dependencySkillInferer.js
-│ │ ├── jdExpectationAnalyzer.js
-│ │ ├── jdRoleResolver.js
-│ │ ├── mergeEvidenceWithML.js
-│ │ ├── resumeQuality.js
-│ │ ├── roleDetector.js
-│ │ ├── roleExpectations.js
-│ │ ├── roleSkills.js
-│ │ ├── scoreBandResolver.js
-│ │ ├── scoreExplanationGenerator.js
-│ │ ├── scoreNormalizer.js
-│ │ ├── sectionWeightResolver.js
-│ │ ├── skillDependencyMap.js
-│ │ ├── skillEvidenceAnalyzer.js
-│ │ ├── skillEvidenceWeights.js
-│ │ ├── skillExtractor.js
-│ │ └── weightBlender.js
-│ └── index.js
-│
+│   ├── controllers/
+│   │   └── analyzeController.js
+│   ├── services/
+│   │   ├── resumeParser.js
+│   │   ├── genaiNarrativeService.js
+│   │   ├── semanticService.js
+│   │   └── skillConceptService.js
+│   ├── utils/
+│   │   ├── roleDetector.js
+│   │   ├── roleSkills.js
+│   │   ├── scoreCalculator.js
+│   │   ├── scoreBandResolver.js
+│   │   ├── scoreExplanationGenerator.js
+│   │   └── skillExtractor.js
+│   ├── index.js
+│   └── README.md
 └── README.md
 
 ---
