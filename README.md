@@ -8,16 +8,16 @@ Unlike traditional ATS systems, CREDExA explains **why** a candidate matches (or
 
 ## ✨ Key Features
 
-- 📄 **Resume Upload (PDF)**
-- 🧠 **Role Detection from Job Description**
-- 🎯 **Skill Matching & Missing Skill Detection**
-- 📊 **Explainable Match Score (0–100)**
-- 🧩 **Semantic Similarity Scoring**
-- 🤖 **GenAI Narrative Resume Review**
-- 🔍 **Transparent “Why This Score?” Explanations**
-- 📈 **Actionable Improvement Suggestions**
-- 🌗 **Dark Mode Support**
-- 📱 **Fully Responsive (Desktop & Mobile)**
+- 📄 Resume Upload (PDF)
+- 🧠 Role Detection from Job Description
+- 🎯 Skill Matching & Missing Skill Detection
+- 📊 Explainable Match Score (0–100)
+- 🧩 Semantic Similarity Scoring
+- 🤖 GenAI Narrative Resume Review
+- 🔍 Transparent “Why This Score?” Explanations
+- 📈 Actionable Improvement Suggestions
+- 🌗 Dark Mode Support
+- 📱 Fully Responsive (Desktop & Mobile)
 
 ---
 
@@ -34,10 +34,11 @@ Final score is computed using a weighted blend of:
 - **Penalty for Critical Missing Skills**
 
 All scores are normalized and mapped to clear score bands:
-- Excellent Match
-- Strong Match
-- Moderate Match
-- Weak Match
+
+- Excellent Match  
+- Strong Match  
+- Moderate Match  
+- Weak Match  
 
 Every score is **explainable**.
 
@@ -46,14 +47,14 @@ Every score is **explainable**.
 ## 🏗️ Tech Stack
 
 ### Frontend
-- **React**
+- React
 - Custom CSS (Glassmorphism + Gradients)
 - Fetch API
 - Fully responsive UI
 - Deployed on **Vercel**
 
 ### Backend
-- **Node.js + Express**
+- Node.js + Express
 - Multer (file upload)
 - Resume PDF parsing
 - Modular scoring pipeline
@@ -63,10 +64,59 @@ Every score is **explainable**.
 - Semantic similarity scoring
 - Skill concept matching
 - Evidence-weighted skill scoring
-- **GenAI (LLM) narrative resume review**
+- GenAI (LLM) narrative resume review
 - Robust fallback logic (no user-visible failures)
 
 ---
+🚀 Running Locally
+Backend
+cd backend
+npm install
+npm start
+
+Frontend
+cd frontend
+npm install
+npm start
+
+
+Frontend: http://localhost:3000
+
+Backend: http://localhost:5000
+
+🌍 Deployment
+
+Frontend: Vercel
+
+Backend: Render
+
+Ensure environment variables are set correctly in the Render dashboard.
+
+🔐 Privacy & Security
+
+Resumes are processed temporarily
+
+Uploaded files are deleted after analysis
+
+No resume data is stored permanently
+
+👥 Team
+
+Neev Sahu — Backend Developer
+
+Nishi Singhal — UI/UX Designer & Frontend Developer
+
+📌 Vision
+
+CREDExA aims to make hiring:
+
+Fairer
+
+More transparent
+
+Explainable by design
+
+No black boxes. Only clarity.
 
 ## 📁 Project Structure
 
@@ -99,63 +149,4 @@ CREDExA/
 │   └── README.md
 └── README.md
 
----
 
-## ⚙️ Environment Variables (Backend)
-
-Create a `.env` file in `backend/`:
-
-```env
-PORT=5000
-GENAI_API_URL=your_genai_endpoint
-GENAI_API_KEY=your_api_key
-
-🚀 Running Locally
-Backend
-cd backend
-npm install
-npm start
-
-Frontend
-cd frontend
-npm install
-npm start
-
-
-Frontend runs on http://localhost:3000
-Backend runs on http://localhost:5000
-
-🌍 Deployment
-
-Frontend: Vercel
-
-Backend: Render
-
-Ensure environment variables are set correctly in Render dashboard.
-
-🔐 Privacy & Security
-
-Resumes are processed temporarily
-
-Uploaded files are deleted after analysis
-
-No resume data is stored permanently
-
-👥 Team
-
-Neev Sahu — Backend Developer
-
-Nishi Singhal — UI/UX Designer & Frontend Developer
-
-📌 Vision
-
-CREDExA aims to make hiring:
-
-Fairer
-
-More transparent
-
-Explainable by design
-
-No black boxes.
-Only clarity.
