@@ -69,8 +69,6 @@ function Header({ onToggleTheme, theme }) {
                 {theme === "light" ? "🌙 Dark" : "☀️ Light"}
               </button>
             </div> */}
-// to be turned on
-
           </div>
         </div>
       </div>
